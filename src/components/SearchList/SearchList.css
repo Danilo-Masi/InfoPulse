@@ -1,0 +1,34 @@
+.searchList {
+    width: 100%;
+    height: auto;
+    min-height: 90svh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.caricamentoRicerca {
+    width: 100%;
+    height: 10svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* TABLET */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+
+}
+
+/* SMARTPHONE */
+@media screen and (max-width: 767px) {
+    .searchList {
+        flex-direction: column;
+    }
+
+    .caricamentoRicerca {
+        height: 70svh;
+    }
+}

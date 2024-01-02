@@ -1,0 +1,78 @@
+.header {
+    width: 80%;
+    height: 10svh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.bloccoLogo {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+}
+
+.bloccoBarraRicerca {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bloccoBottoni {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+/* DESKTOP PICCOLI */
+@media screen and (min-width: 1025px) and (max-width: 1500px) {
+    .header {
+        height: 15svh;
+    } 
+}
+
+/* TABLET */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .header {
+        width: 90%;
+    }
+}
+
+/* SMARTPHONE */
+@media screen and (max-width: 767px) {
+    .header {
+        width: 90%;
+        height: auto;
+        min-height: 30svh;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .bloccoLogo {
+        width: 100%;
+        height: 10svh;
+        justify-content: center;
+    }
+
+    .bloccoBarraRicerca {
+        width: 100%;
+        height: 10svh;
+        justify-content: center;
+    }
+
+    .bloccoBottoni {
+        width: 100%;
+        height: 10svh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

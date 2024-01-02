@@ -1,0 +1,23 @@
+.containerMain {
+    width: 80%;
+    height: auto;
+    min-height: 90svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* TABLET */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .containerMain {
+        width: 90%;
+    }
+}
+
+/* SMARTPHONE */
+@media screen and (max-width: 767px) {
+    .containerMain {
+        width: 90%;
+    }
+}
