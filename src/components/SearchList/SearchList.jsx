@@ -15,9 +15,9 @@ export class SearchList extends Component {
         this.props.openPage(num, dati);
     }
 
-    addPreferiti = () => {
+    addPreferiti = (id, dati) => {
         console.log('Prefe Search --- 2');
-        this.props.aggiungiPreferiti();
+        this.props.aggiungiPreferiti(id, dati);
       }
 
     render() {

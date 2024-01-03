@@ -10,7 +10,7 @@ import LightModeSharpIcon from '@mui/icons-material/LightModeSharp';
 import DarkModeSharpIcon from '@mui/icons-material/DarkModeSharp';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
+import Button from '@mui/material/Button';
 
 export class Header extends Component {
 
@@ -25,7 +25,7 @@ export class Header extends Component {
   //richiama un altra funzione in App.jsx per cambiare la
   //visualizzazione della pagina corrente
   apriPaginaRisultati = () => {
-    let num = 2;
+    let num = 1;
     this.props.cambiaPagina(num);
   }
 
@@ -33,6 +33,11 @@ export class Header extends Component {
   //corrente alla homepage
   apriHomePage = () => {
     let num = 0;
+    this.props.cambiaPagina(num);
+  }
+
+  apriPaginaPreferiti = () => {
+    let num = 2;
     this.props.cambiaPagina(num);
   }
 
@@ -58,7 +63,7 @@ export class Header extends Component {
 
   render() {
 
-    const { tema } = this.props;
+    const { tema, pagina } = this.props;
     const { valoreRicerca } = this.state;
 
     return (
@@ -97,14 +102,14 @@ export class Header extends Component {
             onClick={this.cambiaTema} >
             {tema.palette.mode === 'light' ? <DarkModeSharpIcon /> : <LightModeSharpIcon />}
           </IconButton>
-          {/* Select categoria */}
-          <Select
-            size='small'
-            id="lingua-select"
-            value={'ENG'}>
-            <MenuItem value={'IT'}>IT</MenuItem>
-            <MenuItem value={'ENG'}>ENG</MenuItem>
-          </Select>
+          {/* Preferiti */}
+          {pagina === 2
+            ? <Button
+              variant="contained">Preferiti</Button>
+            : <Button
+              onClick={this.apriPaginaPreferiti}
+              variant="outlined">Preferiti</Button>
+          }
         </div>
       </div>
     )

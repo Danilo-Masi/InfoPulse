@@ -15,9 +15,9 @@ export class SearchResultPage extends Component {
     this.props.apriStaCazz(num, dati);
   }
 
-  nuoviPreferiti = () => {
+  nuoviPreferiti = (id, dati) => {
     console.log('Prefe Search --- 3');
-    this.props.onAggiuni();
+    this.props.onAggiuni(id, dati);
   }
 
   render() {

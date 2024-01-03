@@ -10,9 +10,9 @@ export class HomePage extends Component {
     super(props);
   }
 
-  nuoviPreferiti = () => {
+  nuoviPreferiti = (id, dati) => {
     console.log('Prefe --- 3');
-    this.props.onAggiuni();
+    this.props.onAggiuni(id, dati);
   }
 
   render() {

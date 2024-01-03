@@ -30,9 +30,9 @@ export class NewsList extends Component {
     }
   }
 
-  addPreferiti = () => {
+  addPreferiti = (id, dati) => {
     console.log('Prefe --- 2');
-    this.props.aggiungiPreferiti();
+    this.props.aggiungiPreferiti(id, dati);
   }
 
   render() {

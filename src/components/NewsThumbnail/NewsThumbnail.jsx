@@ -17,7 +17,7 @@ function NewsThumbnail(props) {
     //Creazione della data
     var dataPubblicazione = new Date(dati.publishedAt);
     var giorno = dataPubblicazione.getDate();
-    var mese = dataPubblicazione.getMonth();
+    var mese = dataPubblicazione.getMonth() + 1;
     var anno = dataPubblicazione.getFullYear();
     //Preleva la dimensione della vista
     var vista = window.innerWidth;
@@ -32,7 +32,8 @@ function NewsThumbnail(props) {
     //Funzione per aggiungere l'articolo ai preferiti
     const aggiungiPreferiti = () => {
         console.log('Prefe --- 1');
-        props.addPrefe();
+        const id = link;
+        props.addPrefe(id, dati);
     }
 
     return (

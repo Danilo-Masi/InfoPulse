@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 //CSS
 import './App.css';
-//Componenti
+//Pagine
 import HomePage from './pages/Home/HomePage';
 import SearchResultPage from './pages/SearchResult/SearchResultPage';
+import PreferitiPage from './pages/Preferiti/PreferitiPage';
+//Componenti
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 //Material UI
@@ -89,32 +91,50 @@ export class App extends Component {
     }
   }
 
-  //Funzione per aggiungere un articolo alla lista degli articoli preferiti
-  preferitiNuovi = () => {
+  // Funzione per aggiungere un articolo alla lista degli articoli preferiti
+  preferitiNuovi = (id, dati) => {
     console.log('Prefe --- 4');
-    const {listaPreferiti} = this.state;
-    console.log(listaPreferiti);
+    const { listaPreferiti } = this.state;
+
+    // Verifica se l'articolo è già presente nella listaPreferiti
+    const isPresente = listaPreferiti.some(el => el.id === id);
+
+    if (!isPresente) {
+      // Aggiungi l'articolo alla listaPreferiti
+      this.setState({
+        listaPreferiti: [...listaPreferiti, { id, dati }],
+      }, () => {
+        console.log(this.state.listaPreferiti);
+      });
+    } else {
+      //Aggiungere un alert per l'utente
+      console.log('L\'articolo è già presente nella listaPreferiti.');
+    }
   }
+
 
   render() {
 
-    const { paginaSelzionata, temaSelezionato, listaRisulati } = this.state;
+    const { paginaSelzionata, temaSelezionato, listaRisulati, listaPreferiti } = this.state;
 
     return (
       <ThemeProvider theme={temaSelezionato}>
         <CssBaseline />
         <div className='app'>
           <Header
+            pagina={paginaSelzionata}
             tema={temaSelezionato}
             changeTheme={this.cambiaModalita}
             sendValue={this.onValoreInserito}
             cambiaPagina={this.changePage} />
           {paginaSelzionata === 0
             ? (<HomePage onAggiuni={this.preferitiNuovi} />)
-            : (<SearchResultPage
-              apriStaCazz={this.changePage}
-              datiRicerca={listaRisulati}
-              onAggiuni={this.preferitiNuovi} />)
+            : paginaSelzionata === 1
+              ? (<SearchResultPage
+                apriStaCazz={this.changePage}
+                datiRicerca={listaRisulati}
+                onAggiuni={this.preferitiNuovi} />)
+              : (<PreferitiPage preferiti={listaPreferiti}/>)
           }
           <Footer />
         </div>
