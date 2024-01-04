@@ -4,6 +4,7 @@ import './NewsThumbnail.css';
 //Material UI
 import IconButton from '@mui/material/IconButton';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
 
 function NewsThumbnail(props) {
 

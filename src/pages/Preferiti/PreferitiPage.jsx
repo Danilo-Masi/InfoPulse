@@ -10,17 +10,15 @@ export class PreferitiPage extends Component {
     super(props);
   }
 
-  render() {
+  onBack = (num) => {
+    this.props.backToBack(num);
+  }
 
-    const { preferiti } = this.props;
-    const lun = preferiti.length;
+  render() {
 
     return (
       <div className='containerMain'>
-        {preferiti
-          ? (<PrefeList listaPrefe={preferiti} />)
-          : (<p>Lista preferiti vuota</p>)
-        }
+        <PrefeList tornaIndietro={this.onBack}/>
       </div>
     )
   }

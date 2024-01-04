@@ -92,26 +92,25 @@ export class App extends Component {
   }
 
   // Funzione per aggiungere un articolo alla lista degli articoli preferiti
-  preferitiNuovi = (id, dati) => {
+  addPreferiti = (id, dati) => {
     console.log('Prefe --- 4');
     const { listaPreferiti } = this.state;
-
     // Verifica se l'articolo è già presente nella listaPreferiti
     const isPresente = listaPreferiti.some(el => el.id === id);
-
     if (!isPresente) {
       // Aggiungi l'articolo alla listaPreferiti
       this.setState({
         listaPreferiti: [...listaPreferiti, { id, dati }],
       }, () => {
         console.log(this.state.listaPreferiti);
+        //Archiviazione dell'array dei preferiti nel localStorage
+        localStorage.setItem('listaPreferiti', JSON.stringify(listaPreferiti));
       });
     } else {
       //Aggiungere un alert per l'utente
       console.log('L\'articolo è già presente nella listaPreferiti.');
     }
   }
-
 
   render() {
 
@@ -128,13 +127,13 @@ export class App extends Component {
             sendValue={this.onValoreInserito}
             cambiaPagina={this.changePage} />
           {paginaSelzionata === 0
-            ? (<HomePage onAggiuni={this.preferitiNuovi} />)
+            ? (<HomePage onAggiuni={this.addPreferiti} />)
             : paginaSelzionata === 1
               ? (<SearchResultPage
                 apriStaCazz={this.changePage}
                 datiRicerca={listaRisulati}
-                onAggiuni={this.preferitiNuovi} />)
-              : (<PreferitiPage preferiti={listaPreferiti}/>)
+                onAggiuni={this.addPreferiti} />)
+              : (<PreferitiPage backToBack={this.changePage}/>)
           }
           <Footer />
         </div>
