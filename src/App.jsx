@@ -84,6 +84,7 @@ export class App extends Component {
   onValoreInserito = async (strCerca) => {
     console.log(strCerca);
     try {
+      this.setState({ listaRisulati: [] });
       const risulatiRicerca = await getNewsBySearch(strCerca);
       this.setState({ listaRisulati: risulatiRicerca });
     } catch (error) {
@@ -93,22 +94,19 @@ export class App extends Component {
 
   // Funzione per aggiungere un articolo alla lista degli articoli preferiti
   addPreferiti = (id, dati) => {
-    console.log('Prefe --- 4');
-    const { listaPreferiti } = this.state;
-    // Verifica se l'articolo è già presente nella listaPreferiti
-    const isPresente = listaPreferiti.some(el => el.id === id);
+    //Carica la lista dei preferiti dal localStorage
+    const prefe = JSON.parse(localStorage.getItem('listaPreferiti')) || [];
+    //Verifica se l'articolo passato è gia presente nella lista dei preferiti
+    const isPresente = prefe.some(el => el.id === id);
     if (!isPresente) {
-      // Aggiungi l'articolo alla listaPreferiti
-      this.setState({
-        listaPreferiti: [...listaPreferiti, { id, dati }],
-      }, () => {
-        console.log(this.state.listaPreferiti);
-        //Archiviazione dell'array dei preferiti nel localStorage
-        localStorage.setItem('listaPreferiti', JSON.stringify(listaPreferiti));
-      });
+      //Aggiunge l'articolo alla lista dei preferiti nel local storage
+      prefe.push({ id, dati });
+      //Aggiorna lo stato con i preferiti
+      this.setState({ listaPreferiti: prefe });
+      //Aggiorna la lista dei preferiti del local storage
+      localStorage.setItem('listaPreferiti', JSON.stringify(prefe));
     } else {
-      //Aggiungere un alert per l'utente
-      console.log('L\'articolo è già presente nella listaPreferiti.');
+      alert("Articolo già presente tra gli articoli preferiti");
     }
   }
 
@@ -127,13 +125,15 @@ export class App extends Component {
             sendValue={this.onValoreInserito}
             cambiaPagina={this.changePage} />
           {paginaSelzionata === 0
-            ? (<HomePage onAggiuni={this.addPreferiti} />)
+            ? (<HomePage
+              listaFavoriti={listaPreferiti}
+              onAggiuni={this.addPreferiti} />)
             : paginaSelzionata === 1
               ? (<SearchResultPage
                 apriStaCazz={this.changePage}
                 datiRicerca={listaRisulati}
                 onAggiuni={this.addPreferiti} />)
-              : (<PreferitiPage backToBack={this.changePage}/>)
+              : (<PreferitiPage backToBack={this.changePage} />)
           }
           <Footer />
         </div>

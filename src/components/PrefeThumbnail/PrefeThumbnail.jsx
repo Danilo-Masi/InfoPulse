@@ -16,6 +16,11 @@ export class PrefeThumbnail extends Component {
         window.open(link, '_blank');
     }
 
+    cancellaPreferiti = () => {
+        let id = this.props.datiPrefe.url;
+        this.props.rimuoviPrefe(id);
+    }
+
     render() {
 
         //Preleva la dimensione della vista
@@ -29,7 +34,7 @@ export class PrefeThumbnail extends Component {
         var fonte = datiPrefe.source.name;
         //Creazione della data
         var dataPubblicazione = new Date(datiPrefe.publishedAt);
-        var giorno = dataPubblicazione.getDate();
+        var giorno = dataPubblicazione.getDate() + 1;
         var mese = dataPubblicazione.getMonth() + 1;
         var anno = dataPubblicazione.getFullYear();
 
@@ -46,8 +51,8 @@ export class PrefeThumbnail extends Component {
                             ? stringTitolo.split(" ").slice(0, 7).join(" ") + "..."
                             : stringTitolo
                     ) : (
-                        stringTitolo && stringTitolo.split(" ").length > 8
-                            ? stringTitolo.split(" ").slice(0, 8).join(" ") + "..."
+                        stringTitolo && stringTitolo.split(" ").length > 12
+                            ? stringTitolo.split(" ").slice(0, 12).join(" ") + "..."
                             : stringTitolo
                     )}</h3>
                     <p>{vista < 728 ? (
@@ -67,7 +72,7 @@ export class PrefeThumbnail extends Component {
                     ) : (
                         <p>{fonte} <br />{giorno}/{mese}/{anno}</p>
                     )}
-                    <IconButton>
+                    <IconButton onClick={this.cancellaPreferiti}>
                         <DeleteIcon />
                     </IconButton>
                 </div>

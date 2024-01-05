@@ -8,9 +8,9 @@ import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import LightModeSharpIcon from '@mui/icons-material/LightModeSharp';
 import DarkModeSharpIcon from '@mui/icons-material/DarkModeSharp';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-import Button from '@mui/material/Button';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import EqualizerIcon from '@mui/icons-material/Equalizer';
 
 export class Header extends Component {
 
@@ -76,6 +76,16 @@ export class Header extends Component {
         </div>
         {/* BLOCCO BARRA DI RICERCA */}
         <div className='bloccoBarraRicerca'>
+          {/* Preferiti */}
+          {pagina === 2
+            ? <IconButton><FavoriteIcon /></IconButton>
+            : <IconButton onClick={this.apriPaginaPreferiti}><FavoriteBorderIcon /></IconButton>
+          }
+          {/* Filtri di ricerca */}
+          <IconButton>
+            <EqualizerIcon />
+          </IconButton>
+          {/* Barra di ricerca */}
           <Paper
             component="form"
             sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400 }}
@@ -92,9 +102,8 @@ export class Header extends Component {
             </IconButton>
           </Paper>
         </div>
-        {/* BLOCCO BOTTONI */}
+        {/* 
         <div className='bloccoBottoni'>
-          {/* Bottone cambio tema */}
           <IconButton
             type="button"
             sx={{ p: '10px' }}
@@ -102,15 +111,7 @@ export class Header extends Component {
             onClick={this.cambiaTema} >
             {tema.palette.mode === 'light' ? <DarkModeSharpIcon /> : <LightModeSharpIcon />}
           </IconButton>
-          {/* Preferiti */}
-          {pagina === 2
-            ? <Button
-              variant="contained">Preferiti</Button>
-            : <Button
-              onClick={this.apriPaginaPreferiti}
-              variant="outlined">Preferiti</Button>
-          }
-        </div>
+        </div> */}
       </div>
     )
   }

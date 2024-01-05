@@ -37,6 +37,7 @@ export class NewsList extends Component {
 
   render() {
 
+    const {listaFavoriti} = this.props;
     const { listaNotizie } = this.state;
 
     return (
@@ -46,7 +47,8 @@ export class NewsList extends Component {
             <NewsThumbnail
               key={index}
               dati={el}
-              addPrefe={this.addPreferiti} />
+              addPrefe={this.addPreferiti}
+              listaFavoriti={listaFavoriti} />
           ))
         ) : (
           <p className='caricamentoNotizie'>La lista delle notizie è vuota</p>

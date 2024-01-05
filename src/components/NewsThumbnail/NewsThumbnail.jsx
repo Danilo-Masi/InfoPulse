@@ -8,7 +8,7 @@ import BookmarkIcon from '@mui/icons-material/Bookmark';
 
 function NewsThumbnail(props) {
 
-    const { dati } = props;
+    const { dati, listaFavoriti } = props;
     var stringTitolo = dati.title;
     var stringDescrizione = dati.description;
     var autore = dati.author;
@@ -17,7 +17,7 @@ function NewsThumbnail(props) {
     var link = dati.url;
     //Creazione della data
     var dataPubblicazione = new Date(dati.publishedAt);
-    var giorno = dataPubblicazione.getDate();
+    var giorno = dataPubblicazione.getDate() + 1;
     var mese = dataPubblicazione.getMonth() + 1;
     var anno = dataPubblicazione.getFullYear();
     //Preleva la dimensione della vista

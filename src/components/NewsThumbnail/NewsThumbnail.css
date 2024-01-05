@@ -9,7 +9,7 @@
     justify-content: flex-start;
     border-radius: 12px;
     gap: 10px;
-    padding: 20px 0 20px 0;
+    padding: 20px;
     background-color: #282828;
 }
 
@@ -24,7 +24,7 @@
     justify-content: flex-start;
     border-radius: 12px;
     gap: 10px;
-    padding: 20px 0 20px 0;
+    padding: 20px;
     background-color: #e8e8e8;
 }
 
@@ -34,7 +34,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 20px 0 20px;
     cursor: pointer;
 }
 
@@ -48,13 +47,12 @@
 
 .newsInfo {
     width: 100%;
-    height: 15svh;
+    height: 20svh;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
     gap: 10px;
-    padding: 0 20px 0 20px;
     cursor: pointer;
 }
 
@@ -63,26 +61,24 @@
 }
 
 .newsAuthor {
-    width: calc(100% - 40px);
+    width: 100%;
     height: 10svh;
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-radius: 8px;
-    margin: 0 20px 0 20px;
     padding: 0 20px 0px 20px;
     background-color: #222222;
     border: 1px solid #696868;
 }
 
 .newsAuthorLight {
-    width: calc(100% - 40px);
+    width: 100%;
     height: 10svh;
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-radius: 8px;
-    margin: 0 20px 0 20px;
     padding: 0 20px 0px 20px;
     background-color: #d1d1d1;
     border: 1px solid #bbbaba;
@@ -95,39 +91,57 @@
 
 /* DESKTOP PICCOLI */
 @media screen and (min-width: 1025px) and (max-width: 1500px) {
+
+    /* TEMA SCURO */
     .newsThumbnail {
         width: calc(33.33% - 15px);
+        height: auto;
+        min-height: 65svh;
     }
 
+    /* TEMA CHIARO */
     .newsThumbnailLight {
-        width: calc(33.333% - 15px);
+        width: calc(33.33% - 15px);
+        height: auto;
+        min-height: 65svh;
     }
 
     .newsImage {
+        width: 100%;
         height: 25svh;
     }
 
     .newsInfo {
-        height: 20svh;
+        width: 100%;
+        height: 25svh;
     }
 
     .newsAuthor {
-        height: 12svh;
+        width: 100%;
+        height: 15svh;
     }
 
     .newsAuthorLight {
-        height: 12svh;
+        width: 100%;
+        height: 15svh;
     }
 }
 
 /* TABLET */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
+
+    /* TEMA SCURO */
     .newsThumbnail {
         width: calc(50% - 10px);
+        height: auto;
+        min-height: 40svh;
     }
 
+    /* TEMA CHIARO */
     .newsThumbnailLight {
         width: calc(50% - 10px);
+        height: auto;
+        min-height: 40svh;
     }
 
     .newsImage {
@@ -135,26 +149,38 @@
     }
 
     .newsInfo {
-        height: 20svh;
+        width: 100%;
+        height: 12svh;
     }
 
     .newsAuthor {
-        height: 10svh;
+        width: 100%;
+        height: 8svh;
+        padding: 20px;
     }
 
     .newsAuthorLight {
-        height: 10svh;
+        width: 100%;
+        height: 8svh;
+        padding: 20px;
     }
 }
 
 /* SMARTPHONE */
 @media screen and (max-width: 767px) {
+
+    /* TEMA SCURO */
     .newsThumbnail {
         width: 100%;
+        height: auto;
+        min-height: 60svh;
     }
 
+    /* TEMA CHIARO */
     .newsThumbnailLight {
         width: 100%;
+        height: auto;
+        min-height: 60svh;
     }
 
     .newsImage {
@@ -162,19 +188,22 @@
     }
 
     .newsInfo {
-        height: 25svh;
+        width: 100%;
+        height: auto;
+        min-height: 20svh;
     }
 
     .newsAuthor {
-        height: 12svh;
+        width: 100%;
+        height: auto;
+        min-height: 10svh;
+        padding: 20px;
     }
 
     .newsAuthorLight {
-        height: 12svh;
-    }
-
-    .newsAuthor p, .newsAuthorLight p {
-        max-width: 80%;
-        overflow: hidden;
+        width: 100%;
+        height: auto;
+        min-height: 10svh;
+        padding: 20px;
     }
 }

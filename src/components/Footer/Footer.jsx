@@ -8,7 +8,7 @@ export class Footer extends Component {
       <div className='footer'>
         <div className='footerLogo'>
           <h1>InfoPulse</h1>
-          <p>copyrith -- 2023</p>
+          <p>Developed with &#10084;&#65039; and &#127829; by Danilo Masi </p>
         </div>
         <div className='footerLink'>
           <h3>Titolo 1</h3>
