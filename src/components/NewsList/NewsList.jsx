@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 //CSS
 import './NewsList.css';
 //Funzioni API
-import { getTopNews } from '../../../services/NewsApi';
+import { getTopNews, getNewsByCategory } from '../../../services/NewsApi';
 //Componenti
 import NewsThumbnail from '../NewsThumbnail/NewsThumbnail';
 
@@ -19,14 +19,38 @@ export class NewsList extends Component {
     this.caricaNotizie();
   }
 
+  componentDidUpdate(prevProps) {
+    let {categoria} = this.props;
+    if(categoria !== '' && categoria !== prevProps.categoria) {
+      this.caricaNotizie();
+    }
+  }
+
   caricaNotizie = async () => {
-    try {
-      const notizie = await getTopNews();
-      // Rimuove dalla lista gli elementi che hanno titolo [Removed] o non hanno un immagine di copertina
-      const notizieFiltrate = notizie.filter((notizia) => notizia.title !== '[Removed]' && notizia.urlToImage !== null);
-      this.setState({ listaNotizie: notizieFiltrate });
-    } catch (error) {
-      console.error('Errore caricamento news', error);
+
+    let { categoria } = this.props;
+    console.log(categoria);
+    if (categoria !== '') {
+      try {
+        const notizie = await getNewsByCategory(categoria);
+        console.log('CATEGORIA: ' + notizie);
+        // Rimuove dalla lista gli elementi che hanno titolo [Removed] o non hanno un immagine di copertina
+        const notizieFiltrate = notizie.filter((notizia) => notizia.title !== '[Removed]' && notizia.urlToImage !== null);
+        this.setState({ listaNotizie: notizieFiltrate });
+      } catch (error) {
+        console.error('Errore caricamento news', error);
+      }
+    } else {
+      console.log('ciao');
+      try {
+        const notizie = await getTopNews();
+        console.log('TOP NEWS');
+        // Rimuove dalla lista gli elementi che hanno titolo [Removed] o non hanno un immagine di copertina
+        const notizieFiltrate = notizie.filter((notizia) => notizia.title !== '[Removed]');
+        this.setState({ listaNotizie: notizieFiltrate });
+      } catch (error) {
+        console.error('Errore caricamento news', error);
+      }
     }
   }
 
@@ -37,12 +61,12 @@ export class NewsList extends Component {
 
   render() {
 
-    const {listaFavoriti} = this.props;
+    const { listaFavoriti, categoria } = this.props;
     const { listaNotizie } = this.state;
 
     return (
       <div className='newsList'>
-        {listaNotizie.length > 0 ? (
+        {Array.isArray(listaNotizie) && listaNotizie.length > 0 ? (
           listaNotizie.map((el, index) => (
             <NewsThumbnail
               key={index}

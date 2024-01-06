@@ -8,7 +8,7 @@ export class Footer extends Component {
       <div className='footer'>
         <div className='footerLogo'>
           <h1>InfoPulse</h1>
-          <p>Developed with &#10084;&#65039; and &#127829; by Danilo Masi </p>
+          <p>Developed with &#10084;&#65039; and &#127829; <br />by Danilo Masi </p>
         </div>
         <div className='footerLink'>
           <h3>Titolo 1</h3>
@@ -17,7 +17,7 @@ export class Footer extends Component {
           <p>link 3</p>
         </div>
         <div className='footerLink'>
-        <h3>Titolo 1</h3>
+          <h3>Titolo 1</h3>
           <p>link 1</p>
           <p>link 2</p>
           <p>link 3</p>

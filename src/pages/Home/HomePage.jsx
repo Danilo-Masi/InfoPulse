@@ -17,11 +17,12 @@ export class HomePage extends Component {
 
   render() {
 
-    const { listaFavoriti } = this.props;
+    const { listaFavoriti, categoria } = this.props;
 
     return (
       <div className='containerMain'>
         <NewsList
+          categoria={categoria}
           listaFavoriti={listaFavoriti}
           aggiungiPreferiti={this.nuoviPreferiti} />
       </div>

@@ -11,6 +11,10 @@ import DarkModeSharpIcon from '@mui/icons-material/DarkModeSharp';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import EqualizerIcon from '@mui/icons-material/Equalizer';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+
 
 export class Header extends Component {
 
@@ -18,6 +22,8 @@ export class Header extends Component {
     super(props);
     this.state = {
       valoreRicerca: '',
+      open: false,
+      categoriaSelezionata: null,
     }
   }
 
@@ -61,10 +67,38 @@ export class Header extends Component {
     this.props.changeTheme();
   }
 
+  //Funzione per aprire il form ** DA MODIFICARE **
+  handleClickOpen = () => {
+    this.setState({ open: true });
+  }
+
+  //Funzione per chiudere il form ** DA MODIFICARE **
+  handleClickClose = () => {
+    this.setState({ open: false });
+  }
+
+  //Funzione per selezionare la categoria scelta dall'utente
+  selezionaCategoria = (label) => {
+    const categoriaSelezionata = label;
+    alert("Hai selezionato la categoria: " + categoriaSelezionata);
+    console.log('Categoria --- 1 ' + label);
+    this.props.risulatiPerCategoria(label);
+    this.setState({ open: false, categoriaSelezionata: label });
+    this.apriHomePage();
+  }
+
   render() {
 
     const { tema, pagina } = this.props;
-    const { valoreRicerca } = this.state;
+    const { valoreRicerca, open, categoriaSelezionata } = this.state;
+    const categorie = [
+      { key: 0, label: 'general' },
+      { key: 1, label: 'entertainment' },
+      { key: 2, label: 'business' },
+      { key: 3, label: 'science' },
+      { key: 4, label: 'sports' },
+      { key: 5, label: 'technology' },
+    ]
 
     return (
       <div className='header'>
@@ -82,9 +116,34 @@ export class Header extends Component {
             : <IconButton onClick={this.apriPaginaPreferiti}><FavoriteBorderIcon /></IconButton>
           }
           {/* Filtri di ricerca */}
-          <IconButton>
+          <IconButton onClick={this.handleClickOpen}>
             <EqualizerIcon />
           </IconButton>
+          {/* Dialog */}
+          <Dialog
+            open={open}
+            onClose={this.handleClickClose}
+            fullWidth
+            aria-labelledby="responsive-dialog-title"
+          >
+            <DialogTitle id="responsive-dialog-title">
+              <p>Seleziona una categoria...</p>
+            </DialogTitle>
+            <DialogContent>
+              <div className='stackCategory'>
+                {categorie.map(el => {
+                  return (
+                    <div
+                      key={el.key}
+                      className={`category ${categoriaSelezionata === el.label ? 'selected' : ''}`}
+                      onClick={() => this.selezionaCategoria(el.label)}>
+                      <p>{el.label}</p>
+                    </div>
+                  )
+                })}
+              </div>
+            </DialogContent>
+          </Dialog>
           {/* Barra di ricerca */}
           <Paper
             component="form"

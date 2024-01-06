@@ -1,6 +1,8 @@
 import React from 'react';
 //CSS
 import './NewsThumbnail.css';
+//Images
+import Placeholder from '../../assets/images/Placeholder.jpg';
 //Material UI
 import IconButton from '@mui/material/IconButton';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
@@ -24,6 +26,9 @@ function NewsThumbnail(props) {
     var vista = window.innerWidth;
     //Preleva il valore del tema dal localStorage
     const temaSalvato = localStorage.getItem('temaSalvato');
+    //Verifica se è presente l'articolo nei preferiti
+    let id = link;
+    const isPreferito = listaFavoriti.some(item => item.id === id);
 
     //Funzione per aprire il link all'articolo completo
     const apriFinestraArticolo = () => {
@@ -41,7 +46,9 @@ function NewsThumbnail(props) {
         <div className={temaSalvato === 'dark' ? 'newsThumbnail' : 'newsThumbnailLight'}>
             {/* IMMAGINE */}
             <div className='newsImage' onClick={apriFinestraArticolo}>
-                <img src={url} />
+                <img
+                    src={url ? url : Placeholder}
+                    alt={stringTitolo} />
             </div>
             {/* TITOLO E DESCRIZIONE */}
             <div className='newsInfo' onClick={apriFinestraArticolo}>
@@ -72,7 +79,7 @@ function NewsThumbnail(props) {
                     <p>{fonte} <br />{giorno}/{mese}/{anno}</p>
                 )}
                 <IconButton onClick={aggiungiPreferiti}>
-                    <BookmarkBorderIcon />
+                    {isPreferito ? <BookmarkIcon /> : <BookmarkBorderIcon />}
                 </IconButton>
             </div>
         </div >

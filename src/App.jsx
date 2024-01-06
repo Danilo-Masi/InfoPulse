@@ -23,6 +23,7 @@ export class App extends Component {
       temaSelezionato: this.darkTheme,
       listaRisulati: [],
       listaPreferiti: [],
+      categoria: '',
     }
   }
 
@@ -110,9 +111,14 @@ export class App extends Component {
     }
   }
 
+  cercaPerCategoria = (label) => {
+    console.log('Categoria --- 2 ' + label);
+    this.setState({ categoria: label });
+  }
+
   render() {
 
-    const { paginaSelzionata, temaSelezionato, listaRisulati, listaPreferiti } = this.state;
+    const { paginaSelzionata, temaSelezionato, listaRisulati, listaPreferiti, categoria } = this.state;
 
     return (
       <ThemeProvider theme={temaSelezionato}>
@@ -123,9 +129,11 @@ export class App extends Component {
             tema={temaSelezionato}
             changeTheme={this.cambiaModalita}
             sendValue={this.onValoreInserito}
-            cambiaPagina={this.changePage} />
+            cambiaPagina={this.changePage}
+            risulatiPerCategoria={this.cercaPerCategoria} />
           {paginaSelzionata === 0
             ? (<HomePage
+              categoria={categoria}
               listaFavoriti={listaPreferiti}
               onAggiuni={this.addPreferiti} />)
             : paginaSelzionata === 1
