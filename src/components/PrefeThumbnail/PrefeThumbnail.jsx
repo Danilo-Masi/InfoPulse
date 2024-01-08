@@ -23,26 +23,31 @@ export class PrefeThumbnail extends Component {
 
     render() {
 
-        //Preleva la dimensione della vista
-        var vista = window.innerWidth;
         const { datiPrefe } = this.props;
-        //Creazione dei dati
+        //Decomposizione dei dati caricati dalle props
         var url = datiPrefe.urlToImage;
         var stringTitolo = datiPrefe.title;
         var stringDescrizione = datiPrefe.description;
-        var autore = datiPrefe.author;
         var fonte = datiPrefe.source.name;
+        var data = datiPrefe.publishedAt;
         //Creazione della data
-        var dataPubblicazione = new Date(datiPrefe.publishedAt);
+        var dataPubblicazione = new Date(data);
         var giorno = dataPubblicazione.getDate() + 1;
         var mese = dataPubblicazione.getMonth() + 1;
         var anno = dataPubblicazione.getFullYear();
+        //Preleva la dimensione dello schermo
+        var vista = window.innerWidth;
+        //Preleva il valore del tema dal localStorage
+        const temaSalvato = localStorage.getItem('temaSalvato');
+        //Imposta le classi in base al tema corrente
+        const temaCorrenteContainer = temaSalvato === 'dark' ? 'containerPrefeDark' : 'containerPrefeLigth';
+        const temaCorrenteAuthor = temaSalvato === 'dark' ? 'prefeAuthorDark' : 'prefeAuthorLigth';
 
         return (
-            <div className='containerPrefe'>
+            <div className={`containerPrefe ${temaCorrenteContainer}`}>
                 {/* IMMAGINE */}
                 <div className='prefeImage' onClick={this.apriFinestraArticolo}>
-                    <img src={url} />
+                    <img src={url} alt={stringTitolo} />
                 </div>
                 {/* TITOLO E DESCRIZIONE */}
                 <div className='prefeInfo' onClick={this.apriFinestraArticolo}>
@@ -66,11 +71,11 @@ export class PrefeThumbnail extends Component {
                     )}</p>
                 </div>
                 {/* AUTORE E DATA */}
-                <div className='prefeAuthor'>
-                    {autore ? (
-                        <p>{autore.split(" ").length > 5 ? fonte : autore} <br />{giorno}/{mese}/{anno}</p>
-                    ) : (
+                <div className={`prefeAuthor ${temaCorrenteAuthor}`}>
+                    {fonte ? (
                         <p>{fonte} <br />{giorno}/{mese}/{anno}</p>
+                    ) : (
+                        <p>Nessuna fonte <br />{giorno}/{mese}/{anno}</p>
                     )}
                     <IconButton onClick={this.cancellaPreferiti}>
                         <DeleteIcon />

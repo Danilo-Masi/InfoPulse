@@ -9,7 +9,14 @@
     border-radius: 12px;
     gap: 10px;
     padding: 20px;
+}
+
+.containerPrefeDark {
     background-color: #282828;
+}
+
+.containerPrefeLigth {
+    background-color: #e8e8e8;
 }
 
 .prefeImage {
@@ -48,8 +55,14 @@
     justify-content: space-between;
     border-radius: 8px;
     padding: 0 20px 0px 20px;
-    background-color: #222222;
+}
+
+.prefeAuthorDark {
     border: 1px solid #696868;
+}
+
+.prefeAuthorLigth {
+    border: 1px solid #686767;
 }
 
 /* DESKTOP PICCOLI */
@@ -59,17 +72,17 @@
         height: auto;
         min-height: 65svh;
     }
-    
+
     .prefeImage {
         width: 100%;
         height: 25svh;
     }
-    
+
     .prefeInfo {
         width: 100%;
         height: 25svh;
     }
-    
+
     .prefeAuthor {
         width: 100%;
         height: 15svh;

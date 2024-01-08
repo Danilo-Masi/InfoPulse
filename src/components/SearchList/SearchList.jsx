@@ -18,11 +18,11 @@ export class SearchList extends Component {
     addPreferiti = (id, dati) => {
         console.log('Prefe Search --- 2');
         this.props.aggiungiPreferiti(id, dati);
-      }
+    }
 
     render() {
 
-        const { risultati } = this.props;
+        const { risultati, listaFavoriti } = this.props;
 
         return (
             <div className='searchList'>
@@ -31,6 +31,7 @@ export class SearchList extends Component {
                         <NewsThumbnail
                             key={index}
                             dati={el}
+                            listaFavoriti={listaFavoriti}
                             addPrefe={this.addPreferiti}
                             apriArticolo={this.apriArticoloCompleto} />
                     ))

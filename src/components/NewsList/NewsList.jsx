@@ -20,8 +20,8 @@ export class NewsList extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    let {categoria} = this.props;
-    if(categoria !== '' && categoria !== prevProps.categoria) {
+    let { categoria } = this.props;
+    if (categoria !== '' && categoria !== prevProps.categoria) {
       this.caricaNotizie();
     }
   }
@@ -61,7 +61,7 @@ export class NewsList extends Component {
 
   render() {
 
-    const { listaFavoriti, categoria } = this.props;
+    const { listaFavoriti } = this.props;
     const { listaNotizie } = this.state;
 
     return (

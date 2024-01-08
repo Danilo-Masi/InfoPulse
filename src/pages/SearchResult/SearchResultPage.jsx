@@ -22,11 +22,12 @@ export class SearchResultPage extends Component {
 
   render() {
 
-    const { datiRicerca } = this.props;
+    const { datiRicerca, listaFavoriti } = this.props;
 
     return (
       <div className='containerMain'>
         <SearchList
+          listaFavoriti={listaFavoriti}
           risultati={datiRicerca}
           openPage={this.onArticlePage}
           aggiungiPreferiti={this.nuoviPreferiti} />

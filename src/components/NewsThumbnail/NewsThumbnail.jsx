@@ -13,7 +13,6 @@ function NewsThumbnail(props) {
     const { dati, listaFavoriti } = props;
     var stringTitolo = dati.title;
     var stringDescrizione = dati.description;
-    var autore = dati.author;
     var fonte = dati.source.name;
     var url = dati.urlToImage;
     var link = dati.url;
@@ -26,6 +25,9 @@ function NewsThumbnail(props) {
     var vista = window.innerWidth;
     //Preleva il valore del tema dal localStorage
     const temaSalvato = localStorage.getItem('temaSalvato');
+    //Imposta le classi in base al tema corrente
+    const temaCorrenteContainer = temaSalvato === 'dark' ? 'newsThumbnailDark' : 'newsThumbnailLight';
+    const temaCorrenteAuthor = temaSalvato === 'dark' ? 'newsAuthorDark' : 'newsAuthorLight';
     //Verifica se è presente l'articolo nei preferiti
     let id = link;
     const isPreferito = listaFavoriti.some(item => item.id === id);
@@ -43,7 +45,7 @@ function NewsThumbnail(props) {
     }
 
     return (
-        <div className={temaSalvato === 'dark' ? 'newsThumbnail' : 'newsThumbnailLight'}>
+        <div className={`newsThumbnail ${temaCorrenteContainer}`}>
             {/* IMMAGINE */}
             <div className='newsImage' onClick={apriFinestraArticolo}>
                 <img
@@ -72,11 +74,11 @@ function NewsThumbnail(props) {
                 )}</p>
             </div>
             {/* AUTORE E DATA */}
-            <div className={temaSalvato === 'dark' ? 'newsAuthor' : 'newsAuthorLight'}>
-                {autore ? (
-                    <p>{autore.split(" ").length > 5 ? fonte : autore} <br />{giorno}/{mese}/{anno}</p>
-                ) : (
+            <div className={`newsAuthor ${temaCorrenteAuthor}`}>
+                {fonte ? (
                     <p>{fonte} <br />{giorno}/{mese}/{anno}</p>
+                ) : (
+                    <p>Nessuna fonte <br />{giorno}/{mese}/{anno}</p>
                 )}
                 <IconButton onClick={aggiungiPreferiti}>
                     {isPreferito ? <BookmarkIcon /> : <BookmarkBorderIcon />}

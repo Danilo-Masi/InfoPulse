@@ -6,14 +6,11 @@ import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
-import LightModeSharpIcon from '@mui/icons-material/LightModeSharp';
-import DarkModeSharpIcon from '@mui/icons-material/DarkModeSharp';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import EqualizerIcon from '@mui/icons-material/Equalizer';
-import Dialog from '@mui/material/Dialog';
-import DialogTitle from '@mui/material/DialogTitle';
-import DialogContent from '@mui/material/DialogContent';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
 
 export class Header extends Component {
@@ -22,75 +19,54 @@ export class Header extends Component {
     super(props);
     this.state = {
       valoreRicerca: '',
-      open: false,
+      anchorEl: null,
       categoriaSelezionata: null,
     }
   }
 
-  //Funzione che al onFocus della barra di ricerca
-  //richiama un altra funzione in App.jsx per cambiare la
-  //visualizzazione della pagina corrente
-  apriPaginaRisultati = () => {
-    let num = 1;
+  //Funzione per cambiare pagina 
+  apriNuovaPagina = (num) => {
     this.props.cambiaPagina(num);
   }
 
-  //Funzione che al onClik del logo riporta la pagina
-  //corrente alla homepage
-  apriHomePage = () => {
-    let num = 0;
-    this.props.cambiaPagina(num);
-  }
-
-  apriPaginaPreferiti = () => {
-    let num = 2;
-    this.props.cambiaPagina(num);
-  }
-
-  //Funzione che imposta come valoreRicerca il valore
-  //inserito dall'utente nella barra di ricerca
+  //Funzione che prende il valore inserito dall'utente nella barra di ricerca
   settaValoreRicerca = (e) => {
     this.setState({ valoreRicerca: e.target.value });
   }
 
-  //Funzione che invia il valoreRicerca nello stato
-  //al componente App.jsx per fare le dovute operazioni
+  //Funzione che invia il valore inserito dall'utente nella barra di ricerca
+  //al componente padre
   inviaValoreRicerca = (e) => {
     e.preventDefault();
     this.props.sendValue(this.state.valoreRicerca);
     this.setState({ valoreRicerca: '' });
   }
 
-  //Chiama la funzione nel comonente padre (App)
-  //per modificare il tema dell'applicazione
-  cambiaTema = () => {
-    this.props.changeTheme();
+  //Funzione per aprire il form 
+  handleClickOpen = (event) => {
+    this.setState({ anchorEl: event.currentTarget });
   }
 
-  //Funzione per aprire il form ** DA MODIFICARE **
-  handleClickOpen = () => {
-    this.setState({ open: true });
-  }
-
-  //Funzione per chiudere il form ** DA MODIFICARE **
+  //Funzione per chiudere il form 
   handleClickClose = () => {
-    this.setState({ open: false });
+    this.setState({ anchorEl: null });
   }
 
-  //Funzione per selezionare la categoria scelta dall'utente
+  //Funzione per impostare la categoria selezionata **TODO**
   selezionaCategoria = (label) => {
-    const categoriaSelezionata = label;
-    alert("Hai selezionato la categoria: " + categoriaSelezionata);
     console.log('Categoria --- 1 ' + label);
     this.props.risulatiPerCategoria(label);
-    this.setState({ open: false, categoriaSelezionata: label });
-    this.apriHomePage();
+    this.setState({ categoriaSelezionata: label });
+    this.apriNuovaPagina(0);
   }
 
   render() {
 
-    const { tema, pagina } = this.props;
-    const { valoreRicerca, open, categoriaSelezionata } = this.state;
+    const { pagina } = this.props;
+    const { valoreRicerca, anchorEl, categoriaSelezionata } = this.state;
+    const open = Boolean(anchorEl);
+
+    //Lista categorie ricerca selezionabili
     const categorie = [
       { key: 0, label: 'general' },
       { key: 1, label: 'entertainment' },
@@ -105,45 +81,49 @@ export class Header extends Component {
         {/* BLOCCO LOGO */}
         <div
           className='bloccoLogo'
-          onClick={this.apriHomePage}>
-          <h1>Info Pulse</h1>
+          onClick={() => this.apriNuovaPagina(0)}>
+          <h1>InfoPulse</h1>
         </div>
         {/* BLOCCO BARRA DI RICERCA */}
         <div className='bloccoBarraRicerca'>
           {/* Preferiti */}
           {pagina === 2
             ? <IconButton><FavoriteIcon /></IconButton>
-            : <IconButton onClick={this.apriPaginaPreferiti}><FavoriteBorderIcon /></IconButton>
+            : <IconButton onClick={() => this.apriNuovaPagina(2)}><FavoriteBorderIcon /></IconButton>
           }
           {/* Filtri di ricerca */}
-          <IconButton onClick={this.handleClickOpen}>
+          <IconButton
+            id="menu-button"
+            aria-controls={open ? 'basic-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            onClick={this.handleClickOpen}>
             <EqualizerIcon />
           </IconButton>
-          {/* Dialog */}
-          <Dialog
+          <Menu
+            id="basic-menu"
+            className='contCategory'
+            anchorEl={anchorEl}
             open={open}
             onClose={this.handleClickClose}
-            fullWidth
-            aria-labelledby="responsive-dialog-title"
+            MenuListProps={{
+              'aria-labelledby': 'basic-button',
+            }}
           >
-            <DialogTitle id="responsive-dialog-title">
-              <p>Seleziona una categoria...</p>
-            </DialogTitle>
-            <DialogContent>
-              <div className='stackCategory'>
-                {categorie.map(el => {
-                  return (
-                    <div
-                      key={el.key}
-                      className={`category ${categoriaSelezionata === el.label ? 'selected' : ''}`}
-                      onClick={() => this.selezionaCategoria(el.label)}>
-                      <p>{el.label}</p>
-                    </div>
-                  )
-                })}
-              </div>
-            </DialogContent>
-          </Dialog>
+            {categorie.map(el => {
+              return (
+                <MenuItem
+                  key={el.key}
+                  className={`category ${categoriaSelezionata === el.label ? 'selected' : ''}`}
+                  onClick={() => {
+                    this.selezionaCategoria(el.label);
+                    this.handleClickClose();
+                  }}>
+                  {el.label}
+                </MenuItem>
+              )
+            })}
+          </Menu>
           {/* Barra di ricerca */}
           <Paper
             component="form"
@@ -153,7 +133,7 @@ export class Header extends Component {
               sx={{ ml: 2, flex: 1 }}
               placeholder="Search..."
               value={valoreRicerca}
-              onFocus={this.apriPaginaRisultati}
+              onFocus={() => this.apriNuovaPagina(1)}
               onChange={this.settaValoreRicerca}
             />
             <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
@@ -161,16 +141,6 @@ export class Header extends Component {
             </IconButton>
           </Paper>
         </div>
-        {/* 
-        <div className='bloccoBottoni'>
-          <IconButton
-            type="button"
-            sx={{ p: '10px' }}
-            aria-label="app-mode"
-            onClick={this.cambiaTema} >
-            {tema.palette.mode === 'light' ? <DarkModeSharpIcon /> : <LightModeSharpIcon />}
-          </IconButton>
-        </div> */}
       </div>
     )
   }

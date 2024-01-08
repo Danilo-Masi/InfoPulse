@@ -59,7 +59,7 @@ export class App extends Component {
   //Una volta cliccato il pulsante per cambiare il tema
   //questo setta il tema nello stato e lo setta nel
   //local storage
-  cambiaModalita = () => {
+  cambiaTemaCorrente = () => {
     const { temaSelezionato } = this.state;
     let nuovoTema;
 
@@ -126,8 +126,6 @@ export class App extends Component {
         <div className='app'>
           <Header
             pagina={paginaSelzionata}
-            tema={temaSelezionato}
-            changeTheme={this.cambiaModalita}
             sendValue={this.onValoreInserito}
             cambiaPagina={this.changePage}
             risulatiPerCategoria={this.cercaPerCategoria} />
@@ -138,12 +136,15 @@ export class App extends Component {
               onAggiuni={this.addPreferiti} />)
             : paginaSelzionata === 1
               ? (<SearchResultPage
+                listaFavoriti={listaPreferiti}
                 apriStaCazz={this.changePage}
                 datiRicerca={listaRisulati}
                 onAggiuni={this.addPreferiti} />)
               : (<PreferitiPage backToBack={this.changePage} />)
           }
-          <Footer />
+          <Footer
+            tema={temaSelezionato}
+            changeTheme={this.cambiaTemaCorrente} />
         </div>
       </ThemeProvider>
     )
