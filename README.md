@@ -1,46 +1,37 @@
+
 # InfoPulse
 
-Benvenuto in InfoPulse, la web app che ti tiene aggiornato sulle ultime notizie, creata con tecnologie all'avanguardia come Vite e React.js. Utilizzando l'API di News API (https://newsapi.org), InfoPulse ti offre accesso immediato alle informazioni più rilevanti in tempo reale.
+InfoPulse sfrutta l'API di NEWS API (https://newsapi.org) per caricare le ultime news da tutto il mondo.
 
-## Panoramica
 
-InfoPulse offre un'esperienza intuitiva e personalizzata:
+## Funzionalità dell'app
 
-- **Ricerche personalizzate:** Effettua ricerche inserendo parole chiave come "bitcoin" o "italy".
-- **Filtri tematici:** Naviga attraverso le notizie utilizzando filtri tematici come "tech" o "military".
-- **Lista dei preferiti:** Salva le notizie che ami con un clic, creando una collezione personalizzata di articoli memorabili.
+- **Ricerca con parola chiave:** Effettua ricerche specifiche con una parola chiave a scelta (es: Bitcoin,Travel, ...).
+- **Ricerca per categoria:** Cerca gli articoli più recenti in base alla categoria selezionata (es: Sport,technology, ...).
+- **Preferiti:** Salva gli articoli che ti interessano di più, o che vuoi leggere in un secondo momento.
+- **News in base alla geolocalizzazione:** L'app cattura la posizione dell'utente ed in base a questa mostra le news relative a quella geolocalizzazione, ma dà anche la possibilità di cambiare manualmente il paese di cui visualizzare le news.
+- **Tema:** L'app offre sia tema scuro che il tema chiaro, il tema di default è quello scuro, ma può essere cambiato manualmente.
 
-## Come Iniziare
 
-### Prerequisiti
+## Tech Stack
 
-Prima di iniziare, assicurati di avere installato Node.js, React.js e Vite.
+**Client:** React js, Vite, Material UI
 
-### Installazione
 
-1. Clona il repository sul tuo computer:
 
-   ```bash
-   git clone https://github.com/Danilo-Masi/InfoPulse.git
-   cd InfoPulse
+## Variabili d'ambiente
 
-2. Installa le dipendenze:
-   ```bash
-   npm install
+Per far funzionare questo progetto, devi aggiungere la tua api key nel tuo file .env 
 
-3. Configura la tua API Key:
+`VITE_API_KEY='your api key'`
 
-    Per abilitare l'accesso alle notizie tramite l'API di News API, segui questi passaggi:
 
-    1. Nella root dell'app, crea un file denominato `.env`
-    2. Apri il file con il tuo editor preferito e inserisci la tua chiave API di News API nel seguente formato:
-       
-   ```plaintext
-    VITE_API_KEY='la tua api key di News API'
-   
-  Assicurati di sostituire 'la tua api key di News API' con la tua chiave API effettiva. Questo passaggio è essenziale per garantire il corretto funzionamento di InfoPulse e l'accesso alle ultime notizie.
 
-##
-**Ora sei pronto per utilizzare InfoPulse e rimanere sempre aggiornato sulle ultime notizie!**
+## Authors
 
-   
+- [@dmasiii](https://github.com/Danilo-Masi)
+
+
+## Feedback
+
+Qualsiasi feedback è gradito, puoi contattarmi al mio indirizzo email personale: danilomasi999@gmail.com
