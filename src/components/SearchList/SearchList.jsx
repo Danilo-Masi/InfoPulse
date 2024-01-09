@@ -10,13 +10,13 @@ export class SearchList extends Component {
         super(props);
     }
 
-    apriArticoloCompleto = (num, dati) => {
-        console.log('SearchList (2) --- ' + num);
-        this.props.openPage(num, dati);
+    //Funzione (di callback) per cambiare la pagina corrente
+    apriArticoloCompleto = (num) => {
+        this.props.openPage(num);
     }
 
+    //Funzione (di callback) per aggiungere un articlo alla lista dei preferiti
     addPreferiti = (id, dati) => {
-        console.log('Prefe Search --- 2');
         this.props.aggiungiPreferiti(id, dati);
     }
 

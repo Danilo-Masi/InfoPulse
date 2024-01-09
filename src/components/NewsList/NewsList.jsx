@@ -26,26 +26,22 @@ export class NewsList extends Component {
     }
   }
 
+  //Funzione per caricare le notizie dall'API
   caricaNotizie = async () => {
-
     let { categoria } = this.props;
-    console.log(categoria);
     if (categoria !== '') {
       try {
         const notizie = await getNewsByCategory(categoria);
-        console.log('CATEGORIA: ' + notizie);
-        // Rimuove dalla lista gli elementi che hanno titolo [Removed] o non hanno un immagine di copertina
-        const notizieFiltrate = notizie.filter((notizia) => notizia.title !== '[Removed]' && notizia.urlToImage !== null);
+        // Rimuove dalla lista gli elementi che hanno titolo [Removed]
+        const notizieFiltrate = notizie.filter((notizia) => notizia.title !== '[Removed]');
         this.setState({ listaNotizie: notizieFiltrate });
       } catch (error) {
         console.error('Errore caricamento news', error);
       }
     } else {
-      console.log('ciao');
       try {
         const notizie = await getTopNews();
-        console.log('TOP NEWS');
-        // Rimuove dalla lista gli elementi che hanno titolo [Removed] o non hanno un immagine di copertina
+        // Rimuove dalla lista gli elementi che hanno titolo [Removed]
         const notizieFiltrate = notizie.filter((notizia) => notizia.title !== '[Removed]');
         this.setState({ listaNotizie: notizieFiltrate });
       } catch (error) {
@@ -54,8 +50,8 @@ export class NewsList extends Component {
     }
   }
 
+  //Funzione (di callback) per aggiungere un articlo alla lista dei preferiti
   addPreferiti = (id, dati) => {
-    console.log('Prefe --- 2');
     this.props.aggiungiPreferiti(id, dati);
   }
 

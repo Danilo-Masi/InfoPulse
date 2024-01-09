@@ -44,7 +44,15 @@
 /* DESKTOP PICCOLI */
 @media screen and (min-width: 1025px) and (max-width: 1500px) {
     .header {
-        height: 15svh;
+        height: 10svh;
+    }
+
+    .bloccoLogo {
+        align-items: flex-end;
+    }
+    
+    .bloccoBarraRicerca {
+        align-items: flex-end;
     }
 
     .category {

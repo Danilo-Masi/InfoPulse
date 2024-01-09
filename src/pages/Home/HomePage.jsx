@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import '../../assets/style/Style.css';
 //Componenti
 import NewsList from '../../components/NewsList/NewsList';
+import Welcome from '../../components/Welcome/Welcome';
 
 export class HomePage extends Component {
 
@@ -10,8 +11,8 @@ export class HomePage extends Component {
     super(props);
   }
 
+  //Funzione (di callback) per aggiungere un articlo alla lista dei preferiti
   nuoviPreferiti = (id, dati) => {
-    console.log('Prefe --- 3');
     this.props.onAggiuni(id, dati);
   }
 
@@ -21,6 +22,7 @@ export class HomePage extends Component {
 
     return (
       <div className='containerMain'>
+        <Welcome />
         <NewsList
           categoria={categoria}
           listaFavoriti={listaFavoriti}

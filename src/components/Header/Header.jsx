@@ -6,11 +6,11 @@ import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import EqualizerIcon from '@mui/icons-material/Equalizer';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
 
 
 export class Header extends Component {
@@ -24,7 +24,7 @@ export class Header extends Component {
     }
   }
 
-  //Funzione per cambiare pagina 
+  //Funzione per cambiare la pagina corrente 
   apriNuovaPagina = (num) => {
     this.props.cambiaPagina(num);
   }
@@ -54,7 +54,6 @@ export class Header extends Component {
 
   //Funzione per impostare la categoria selezionata **TODO**
   selezionaCategoria = (label) => {
-    console.log('Categoria --- 1 ' + label);
     this.props.risulatiPerCategoria(label);
     this.setState({ categoriaSelezionata: label });
     this.apriNuovaPagina(0);
@@ -87,10 +86,12 @@ export class Header extends Component {
         {/* BLOCCO BARRA DI RICERCA */}
         <div className='bloccoBarraRicerca'>
           {/* Preferiti */}
-          {pagina === 2
-            ? <IconButton><FavoriteIcon /></IconButton>
-            : <IconButton onClick={() => this.apriNuovaPagina(2)}><FavoriteBorderIcon /></IconButton>
-          }
+          <IconButton onClick={() => this.apriNuovaPagina(2)}>
+            {pagina === 2
+              ? <BookmarkIcon />
+              : <BookmarkBorderIcon />
+            }
+          </IconButton>
           {/* Filtri di ricerca */}
           <IconButton
             id="menu-button"

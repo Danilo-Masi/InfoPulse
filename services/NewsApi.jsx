@@ -12,7 +12,6 @@ export const getTopNews = async () => {
     return response.data.articles;
   } catch (error) {
     console.error('Error fetching top news:', error);
-    console.log( "API KEY: " + key);
     return [];
   }
 };
@@ -32,7 +31,6 @@ export const getNewsBySearch = async (srcString) => {
 
 //Funzione per ricercare le news in base ad una categoria
 export const getNewsByCategory = async (category) => {
-  console.log(category);
   try {
     const response = await axios.get(
       `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${apiKey}`

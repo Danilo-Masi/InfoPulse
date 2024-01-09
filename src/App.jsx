@@ -45,8 +45,7 @@ export class App extends Component {
     this.settaTema();
   }
 
-  //Prende il tema presente nel localStorage e lo imposta
-  //come nuovo stato
+  //Funzione che carica il tema 
   settaTema = () => {
     const temaSalvato = localStorage.getItem('temaSalvato');
     if (temaSalvato === 'dark') {
@@ -56,19 +55,15 @@ export class App extends Component {
     }
   }
 
-  //Una volta cliccato il pulsante per cambiare il tema
-  //questo setta il tema nello stato e lo setta nel
-  //local storage
+  //Funzione per cambiare il tema corrente
   cambiaTemaCorrente = () => {
     const { temaSelezionato } = this.state;
     let nuovoTema;
-
     if (temaSelezionato === this.darkTheme) {
       nuovoTema = 'light';
     } else {
       nuovoTema = 'dark';
     }
-
     this.setState({ temaSelezionato: (nuovoTema === 'dark') ? this.darkTheme : this.lightTheme });
     localStorage.setItem('temaSalvato', nuovoTema);
   }
@@ -83,7 +78,6 @@ export class App extends Component {
   //Funzione che prende in input la stringa di ricerca inserita dall'utente
   //e carica i dati dall'API in base alla stringa di ricerca
   onValoreInserito = async (strCerca) => {
-    console.log(strCerca);
     try {
       this.setState({ listaRisulati: [] });
       const risulatiRicerca = await getNewsBySearch(strCerca);
@@ -111,8 +105,8 @@ export class App extends Component {
     }
   }
 
+  //Funzione che imposta come stato la categoria selezionata
   cercaPerCategoria = (label) => {
-    console.log('Categoria --- 2 ' + label);
     this.setState({ categoria: label });
   }
 
@@ -137,8 +131,8 @@ export class App extends Component {
             : paginaSelzionata === 1
               ? (<SearchResultPage
                 listaFavoriti={listaPreferiti}
-                apriStaCazz={this.changePage}
                 datiRicerca={listaRisulati}
+                apriStaCazz={this.changePage}
                 onAggiuni={this.addPreferiti} />)
               : (<PreferitiPage backToBack={this.changePage} />)
           }

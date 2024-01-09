@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 //CSS
 import './PrefeList.css';
 //Material UI
-//Material UI
 import IconButton from '@mui/material/IconButton';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 //Componenti 
@@ -21,10 +20,9 @@ export class PrefeList extends Component {
         this.caricaLista();
     }
 
+    //Carica la lista con tutti gli articoli aggiunti ai preferiti
     caricaLista = () => {
-        console.log('Carico preferiti');
         const prefe = JSON.parse(localStorage.getItem('listaPreferiti'));
-        console.log(" Lista preferiti: " + prefe);
         if (prefe !== null || Array.isArray(prefe)) {
             this.setState({ listaPrefe: prefe });
         } else {
@@ -32,15 +30,13 @@ export class PrefeList extends Component {
         }
     }
 
-    backPage = () => {
-        console.log('ciao');
-        let num = 0;
+    //Funzione per tornare alla HomePage
+    tornaIndietro = (num) => {
         this.props.tornaIndietro(num);
     }
 
-    // Funzione per aggiungere un articolo alla lista degli articoli preferiti
+    // Funzione per rimuovere un articolo dalla lista dei preferiti
     removePreferiti = (id) => {
-        console.log("Rimuovo l'articolo " + id);
         //Carico la lista dei preferiti dal local storage
         let prefe = JSON.parse(localStorage.getItem('listaPreferiti')) || [];
         //Filtra la lista per escludere l'articolo con l'id specificato
@@ -57,12 +53,14 @@ export class PrefeList extends Component {
 
         return (
             <div className='prefeList'>
+                {/* Introduzione alla lista dei preferiti */}
                 <div className='prefeTitle'>
-                    <IconButton onClick={this.backPage}>
+                    <IconButton onClick={() => this.tornaIndietro(0)}>
                         <ArrowBackIcon />
                     </IconButton>
                     <h2>Lista preferiti...</h2>
                 </div>
+                {/* Lista dei preferiti */}
                 <div className='listaPreriti'>
                     {listaPrefe && listaPrefe.length > 0
                         ? listaPrefe.map((el, index) => {
@@ -72,7 +70,7 @@ export class PrefeList extends Component {
                                     datiPrefe={el.dati}
                                     rimuoviPrefe={this.removePreferiti} />
                             )
-                        }) : (<p>Nessun articolo preferito</p>)}
+                        }) : (<p className='contListaVuota'>Nessun articolo presente</p>)}
                 </div>
             </div>
         )

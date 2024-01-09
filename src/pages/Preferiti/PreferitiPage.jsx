@@ -10,6 +10,7 @@ export class PreferitiPage extends Component {
     super(props);
   }
 
+  //Funzione (di callback) per tornare alla HomePage
   onBack = (num) => {
     this.props.backToBack(num);
   }
@@ -18,7 +19,7 @@ export class PreferitiPage extends Component {
 
     return (
       <div className='containerMain'>
-        <PrefeList tornaIndietro={this.onBack}/>
+        <PrefeList tornaIndietro={this.onBack} />
       </div>
     )
   }

@@ -10,13 +10,13 @@ export class SearchResultPage extends Component {
     super(props);
   }
 
-  onArticlePage = (num, dati) => {
-    console.log('SearchResultPage (3) --- ' + num);
-    this.props.apriStaCazz(num, dati);
+  //Funzione (di callback) per cambiare la pagina corrente
+  onArticlePage = (num) => {
+    this.props.apriStaCazz(num);
   }
 
+  //Funzione (di callback) per aggiungere un articolo ai preferiti
   nuoviPreferiti = (id, dati) => {
-    console.log('Prefe Search --- 3');
     this.props.onAggiuni(id, dati);
   }
 

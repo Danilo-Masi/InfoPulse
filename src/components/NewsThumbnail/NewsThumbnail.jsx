@@ -37,22 +37,21 @@ function NewsThumbnail(props) {
         window.open(link, '_blank');
     }
 
-    //Funzione per aggiungere l'articolo ai preferiti
+    //Funzione ( di callback) per aggiungere l'articolo ai preferiti
     const aggiungiPreferiti = () => {
-        console.log('Prefe --- 1');
         const id = link;
         props.addPrefe(id, dati);
     }
 
     return (
         <div className={`newsThumbnail ${temaCorrenteContainer}`}>
-            {/* IMMAGINE */}
+            {/* Immagine */}
             <div className='newsImage' onClick={apriFinestraArticolo}>
                 <img
                     src={url ? url : Placeholder}
                     alt={stringTitolo} />
             </div>
-            {/* TITOLO E DESCRIZIONE */}
+            {/* Titolo e descrizione */}
             <div className='newsInfo' onClick={apriFinestraArticolo}>
                 <h3>{vista < 728 ? (
                     stringTitolo && stringTitolo.split(" ").length > 7
@@ -73,7 +72,7 @@ function NewsThumbnail(props) {
                         : stringDescrizione
                 )}</p>
             </div>
-            {/* AUTORE E DATA */}
+            {/* Box dati */}
             <div className={`newsAuthor ${temaCorrenteAuthor}`}>
                 {fonte ? (
                     <p>{fonte} <br />{giorno}/{mese}/{anno}</p>

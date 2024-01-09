@@ -11,11 +11,14 @@ export class PrefeThumbnail extends Component {
         super(props);
     }
 
+    //Funzione per aprire l'articolo completo
     apriFinestraArticolo = () => {
         var link = this.props.datiPrefe.url;
         window.open(link, '_blank');
     }
 
+    //Funzione (di callback) per cancellare un articolo
+    //dalla lista dei preferiti
     cancellaPreferiti = () => {
         let id = this.props.datiPrefe.url;
         this.props.rimuoviPrefe(id);
@@ -45,11 +48,11 @@ export class PrefeThumbnail extends Component {
 
         return (
             <div className={`containerPrefe ${temaCorrenteContainer}`}>
-                {/* IMMAGINE */}
+                {/* Immagine */}
                 <div className='prefeImage' onClick={this.apriFinestraArticolo}>
                     <img src={url} alt={stringTitolo} />
                 </div>
-                {/* TITOLO E DESCRIZIONE */}
+                {/* Ttitolo e descrizione */}
                 <div className='prefeInfo' onClick={this.apriFinestraArticolo}>
                     <h3>{vista < 728 ? (
                         stringTitolo && stringTitolo.split(" ").length > 7
@@ -70,7 +73,7 @@ export class PrefeThumbnail extends Component {
                             : stringDescrizione
                     )}</p>
                 </div>
-                {/* AUTORE E DATA */}
+                {/* Box dati */}
                 <div className={`prefeAuthor ${temaCorrenteAuthor}`}>
                     {fonte ? (
                         <p>{fonte} <br />{giorno}/{mese}/{anno}</p>
