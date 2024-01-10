@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 //CSS
-import '../../assets/style/Style.css';
+import "../../assets/style/Style.css";
 //Componenti
-import NewsList from '../../components/NewsList/NewsList';
-import Welcome from '../../components/Welcome/Welcome';
+import NewsList from "../../components/NewsList/NewsList";
+import Welcome from "../../components/Welcome/Welcome";
 
 export class HomePage extends Component {
-
   constructor(props) {
     super(props);
   }
@@ -14,22 +13,21 @@ export class HomePage extends Component {
   //Funzione (di callback) per aggiungere un articlo alla lista dei preferiti
   nuoviPreferiti = (id, dati) => {
     this.props.onAggiuni(id, dati);
-  }
+  };
 
   render() {
-
-    const { listaFavoriti, categoria } = this.props;
+    const { categoria } = this.props;
 
     return (
-      <div className='containerMain'>
+      <div className="containerMain">
         <Welcome />
         <NewsList
           categoria={categoria}
-          listaFavoriti={listaFavoriti}
-          aggiungiPreferiti={this.nuoviPreferiti} />
+          aggiungiPreferiti={this.nuoviPreferiti}
+        />
       </div>
-    )
+    );
   }
 }
 
-export default HomePage
+export default HomePage;
