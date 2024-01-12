@@ -51,29 +51,19 @@ export class PrefeList extends Component {
 
         return (
             <div className="prefeList">
-                {/* Introduzione alla lista dei preferiti */}
-                <div className="prefeTitle">
-                    <IconButton onClick={() => this.tornaIndietro(0)}>
-                        <ArrowBackIcon />
-                    </IconButton>
-                    <h2>Lista preferiti...</h2>
-                </div>
-                {/* Lista dei preferiti */}
-                <div className="listaPreriti">
-                    {listaPrefe && listaPrefe.length > 0 ? (
-                        listaPrefe.map((el, index) => {
-                            return (
-                                <PrefeThumbnail
-                                    key={index}
-                                    datiPrefe={el.dati}
-                                    rimuoviPrefe={this.removePreferiti}
-                                />
-                            );
-                        })
-                    ) : (
-                        <p className="contListaVuota">Nessun articolo presente</p>
-                    )}
-                </div>
+                {listaPrefe && listaPrefe.length > 0 ? (
+                    listaPrefe.map((el, index) => {
+                        return (
+                            <PrefeThumbnail
+                                key={index}
+                                datiPrefe={el.dati}
+                                rimuoviPrefe={this.removePreferiti}
+                            />
+                        );
+                    })
+                ) : (
+                    <p className="contListaVuota">Nessun articolo presente</p>
+                )}
             </div>
         );
     }

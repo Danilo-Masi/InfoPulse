@@ -16,6 +16,12 @@ export class Footer extends Component {
     this.props.changeTheme();
   };
 
+  //Funzone (di callback) per cambiare la pagina corrente
+  cambiaPagina = (num) => {
+    window.scrollTo(0, 0);
+    this.props.modificaPagina(num);
+  }
+
   render() {
     const { tema } = this.props;
 
@@ -39,10 +45,9 @@ export class Footer extends Component {
         </div>
         {/* Footer link */}
         <div className="footerLink">
-          <h3>Titolo 1</h3>
-          <p>link 1</p>
-          <p>link 2</p>
-          <p>link 3</p>
+          <h3>Link</h3>
+          <p onClick={() => this.cambiaPagina(0)}>Home</p>
+          <p onClick={() => this.cambiaPagina(2)}>Preferiti</p>
         </div>
         {/* Footer link */}
         <div className="footerLink">
@@ -61,7 +66,6 @@ export class Footer extends Component {
               )}
             </IconButton>
           </div>
-          <p>Link 3</p>
         </div>
       </div>
     );

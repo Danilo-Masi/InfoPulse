@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 //CSS
 import "./PrefeThumbnail.css";
+//Images
+import Placeholder from '../../assets/images/Placeholder.webp';
 //Material UI
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -79,7 +81,7 @@ export class PrefeThumbnail extends Component {
             <div className={`containerPrefe ${temaCorrenteContainer}`}>
                 {/* Immagine */}
                 <div className="prefeImage" onClick={this.apriFinestraArticolo}>
-                    <img src={url} alt={stringTitolo} />
+                    <img src={url ? url : Placeholder} alt={stringTitolo} />
                 </div>
                 {/* Ttitolo e descrizione */}
                 <div className="prefeInfo" onClick={this.apriFinestraArticolo}>

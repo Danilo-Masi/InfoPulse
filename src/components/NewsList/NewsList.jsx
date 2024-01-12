@@ -30,6 +30,7 @@ export class NewsList extends Component {
     let { categoria } = this.props;
     if (categoria !== "") {
       try {
+        this.setState({ listaNotizie: [] });
         const notizie = await getNewsByCategory(categoria);
         // Rimuove dalla lista gli elementi che hanno titolo [Removed]
         const notizieFiltrate = notizie.filter(

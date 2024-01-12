@@ -1,0 +1,9 @@
+.pageTitle {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 10px 0 10px 0;
+}

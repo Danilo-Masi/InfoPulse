@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import "../../assets/style/Style.css";
 //Componenti
 import PrefeList from "../../components/PrefeList/PrefeList";
+import PageTitle from "../../components/PageTitle/PageTitle";
 
 export class PreferitiPage extends Component {
   constructor(props) {
@@ -17,7 +18,11 @@ export class PreferitiPage extends Component {
   render() {
     return (
       <div className="containerMain">
-        <PrefeList tornaIndietro={this.onBack} />
+        <PageTitle
+          pagina={'pagina'}
+          tornaIndietro={this.onBack}
+          titolo={'Saved articles'} />
+        <PrefeList />
       </div>
     );
   }

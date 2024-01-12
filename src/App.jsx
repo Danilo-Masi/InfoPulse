@@ -13,7 +13,6 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 //Funzioni API
 import { getNewsBySearch } from "../services/NewsApi";
-import { amber, deepOrange, grey, red } from "@mui/material/colors";
 
 export class App extends Component {
   constructor(props) {
@@ -24,6 +23,7 @@ export class App extends Component {
       listaRisulati: [],
       listaPreferiti: [],
       categoria: "",
+      stringaRicerca: "",
     };
   }
 
@@ -83,6 +83,7 @@ export class App extends Component {
     this.setState({
       paginaSelzionata: num,
     });
+
   };
 
   //Funzione che prende in input la stringa di ricerca inserita dall'utente
@@ -91,7 +92,7 @@ export class App extends Component {
     try {
       this.setState({ listaRisulati: [] });
       const risulatiRicerca = await getNewsBySearch(strCerca);
-      this.setState({ listaRisulati: risulatiRicerca });
+      this.setState({ listaRisulati: risulatiRicerca, stringaRicerca: strCerca });
     } catch (error) {
       console.error("Errore caricamento news ricerca", error);
     }
@@ -125,7 +126,7 @@ export class App extends Component {
       paginaSelzionata,
       temaSelezionato,
       listaRisulati,
-      listaPreferiti,
+      stringaRicerca,
       categoria,
     } = this.state;
 
@@ -143,6 +144,7 @@ export class App extends Component {
             <HomePage categoria={categoria} onAggiuni={this.addPreferiti} />
           ) : paginaSelzionata === 1 ? (
             <SearchResultPage
+              stringaRicerca={stringaRicerca}
               datiRicerca={listaRisulati}
               apriStaCazz={this.changePage}
               onAggiuni={this.addPreferiti}
@@ -153,6 +155,7 @@ export class App extends Component {
           <Footer
             tema={temaSelezionato}
             changeTheme={this.cambiaTemaCorrente}
+            modificaPagina={this.changePage}
           />
         </div>
       </ThemeProvider>

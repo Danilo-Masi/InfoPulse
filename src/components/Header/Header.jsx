@@ -25,7 +25,7 @@ export class Header extends Component {
     this.state = {
       valoreRicerca: "",
       anchorEl: null,
-      categoriaSelezionata: null,
+      categoriaSelezionata: 'general',
     };
   }
 
@@ -159,13 +159,18 @@ export class Header extends Component {
             onSubmit={this.inviaValoreRicerca}
           >
             <InputBase
+              name="search bar"
               sx={{ ml: 2, flex: 1 }}
               placeholder="Search..."
               value={valoreRicerca}
               onFocus={() => this.apriNuovaPagina(1)}
               onChange={this.settaValoreRicerca}
             />
-            <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
+            <IconButton
+              type="button"
+              sx={{ p: "10px" }}
+              aria-label="search"
+              onClick={this.inviaValoreRicerca}>
               <SearchIcon />
             </IconButton>
           </Paper>

@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import "../../assets/style/Style.css";
 //Componenti
 import SearchList from "../../components/SearchList/SearchList";
+import PageTitle from '../../components/PageTitle/PageTitle';
 
 export class SearchResultPage extends Component {
   constructor(props) {
@@ -20,10 +21,13 @@ export class SearchResultPage extends Component {
   };
 
   render() {
-    const { datiRicerca } = this.props;
+    const { datiRicerca, stringaRicerca } = this.props;
 
     return (
       <div className="containerMain">
+        <PageTitle
+          stringaRicerca={stringaRicerca}
+          titolo={'Search for: '} />
         <SearchList
           risultati={datiRicerca}
           openPage={this.onArticlePage}

@@ -2,12 +2,11 @@ import React from "react";
 //CSS
 import "./NewsThumbnail.css";
 //Images
-import Placeholder from "../../assets/images/Placeholder.jpg";
+import Placeholder from "../../assets/images/Placeholder.webp";
 //Material UI
 import IconButton from "@mui/material/IconButton";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
-import { render } from "react-dom";
 
 function NewsThumbnail(props) {
   const { dati } = props;
