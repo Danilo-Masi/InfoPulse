@@ -4,7 +4,6 @@ import "../../assets/style/Style.css";
 //Componenti
 import NewsList from "../../components/NewsList/NewsList";
 import PageTitle from "../../components/PageTitle/PageTitle";
-import Pagination from "../../components/Pagination/Pagination";
 
 export class HomePage extends Component {
   constructor(props) {
@@ -26,7 +25,6 @@ export class HomePage extends Component {
           categoria={categoria}
           aggiungiPreferiti={this.nuoviPreferiti}
         />
-        <Pagination />
       </div>
     );
   }

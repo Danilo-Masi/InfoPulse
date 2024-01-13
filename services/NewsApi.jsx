@@ -7,7 +7,7 @@ const apiKey = import.meta.env.VITE_API_KEY;
 export const getTopNews = async () => {
   try {
     const response = await axios.get(
-      `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}&pageSize=16`
+      `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}&pageSize=100`
     );
     return response.data.articles;
   } catch (error) {
@@ -20,7 +20,7 @@ export const getTopNews = async () => {
 export const getNewsBySearch = async (srcString) => {
   try {
     const response = await axios.get(
-      `https://newsapi.org/v2/everything?q=${srcString}&sortBy=relevancy&apiKey=${apiKey}&pageSize=16`
+      `https://newsapi.org/v2/everything?q=${srcString}&sortBy=relevancy&apiKey=${apiKey}&pageSize=12`
     );
     return response.data.articles;
   } catch (error) {
@@ -33,7 +33,7 @@ export const getNewsBySearch = async (srcString) => {
 export const getNewsByCategory = async (category) => {
   try {
     const response = await axios.get(
-      `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${apiKey}`
+      `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${apiKey}&pageSize=100`
     );
     return response.data.articles;
   } catch (error) {
