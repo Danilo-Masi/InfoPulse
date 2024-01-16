@@ -18,7 +18,7 @@ export class Footer extends Component {
 
   //Funzone (di callback) per cambiare la pagina corrente
   cambiaPagina = (num) => {
-    window.scrollTo(0, 0);
+    window.scrollTo({top: 0, behavior: 'smooth'});
     this.props.modificaPagina(num);
   }
 

@@ -27,14 +27,9 @@ export class NewsList extends Component {
   componentDidUpdate(prevProps) {
     const { categoria } = this.props;
     if (categoria !== prevProps.categoria) {
-      // Resetta la pagina corrente a 1 quando cambia la categoria
-      /*this.setState({ currentPage: 1 }, () => {
-        this.caricaNotizie();
-      })*/
       this.caricaNotizie();
     }
   }
-
 
   //Funzione per caricare le notizie dall'API
   caricaNotizie = async () => {
@@ -53,29 +48,21 @@ export class NewsList extends Component {
       let notizie;
       if (categoria !== "") {
         this.setState({ listaNotizie: [], currentPage: 1 });
-        //Simula un ritaro
-        await new Promise(resolve => setTimeout(resolve, 2000));
         notizie = await getNewsByCategory(categoria);
       } else {
-        //Simula un ritaro
-        await new Promise(resolve => setTimeout(resolve, 2000));
         notizie = await getTopNews();
       }
-
       const notizieFiltrate = notizie.filter((notizia) => notizia.title !== "[Removed]");
       numberPages = Math.ceil(notizieFiltrate.length / elementiPagina);
       listaNotizie = notizieFiltrate.slice(indexOfFirstRecord, indexOfLastRecord);
     } catch (error) {
       console.error("Errore caricamento news", error);
     } finally {
-      //Simula un ritaro
-      await new Promise(resolve => setTimeout(resolve, 2000));
       this.setState({ caricamento: false });
     }
 
     this.setState({ listaNotizie, numberPages });
   };
-
 
   //Funzione (di callback) per aggiungere un articlo alla lista dei preferiti
   addPreferiti = (id, dati) => {
@@ -94,6 +81,7 @@ export class NewsList extends Component {
 
   render() {
     const { listaNotizie, numberPages, currentPage, caricamento } = this.state;
+    const {categoria} = this.props;
 
     return (
       <div className="newsList">
@@ -107,6 +95,7 @@ export class NewsList extends Component {
           </p>
         )}
         <PaginationElement
+          categoria={categoria}
           currentPage={currentPage}
           numeroPagina={numberPages}
           onPageChange={this.handlePageChange} />

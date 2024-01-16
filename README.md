@@ -1,37 +1,32 @@
 
 # InfoPulse
 
-InfoPulse sfrutta l'API di NEWS API (https://newsapi.org) per caricare le ultime news da tutto il mondo.
+InfoPulse is an app that utilizes the NEWS API (available at https://newsapi.org) to provide a comprehensive view of the latest global news. Keyword and category searches, along with the ability to save favorite articles, personalize the user experience. With an elegant interface, light and dark themes, the app adapts to user preferences, making access to the world of news quick and seamless.
+
+InfoPulse è un'app che utilizza l'API di NEWS API (su https://newsapi.org) per fornire una visione completa delle ultime notizie globali. La ricerca per parole chiave e categoria, insieme alla possibilità di salvare articoli preferiti, personalizza l'esperienza dell'utente. Con un'interfaccia elegante, temi chiaro e scuro, l'app si adatta alle preferenze degli utenti, rendendo l'accesso al mondo delle notizie rapido e agevole.
 
 
-## Funzionalità dell'app
+## App Features (Funzionalità dell'app)
 
-- **Ricerca con parola chiave:** Effettua ricerche specifiche con una parola chiave a scelta (es: Bitcoin,Travel, ...).
-- **Ricerca per categoria:** Cerca gli articoli più recenti in base alla categoria selezionata (es: Sport,technology, ...).
-- **Preferiti:** Salva gli articoli che ti interessano di più, o che vuoi leggere in un secondo momento.
-- **News in base alla geolocalizzazione:** L'app cattura la posizione dell'utente ed in base a questa mostra le news relative a quella geolocalizzazione, ma dà anche la possibilità di cambiare manualmente il paese di cui visualizzare le news.
-- **Tema:** L'app offre sia tema scuro che il tema chiaro, il tema di default è quello scuro, ma può essere cambiato manualmente.
+- **Keyword Search:** Conduct specific searches using a keyword of your choice (e.g., Bitcoin, Travel, ...).
+- **Category Search:** Find the latest articles based on the selected category (e.g., Sports, Technology, ...).
+- **Favorites:** Save articles that interest you the most or that you want to read later.
+- **Theme:** The app offers both a dark and light theme. The default theme is dark, but it can be changed manually.
 
+- **Ricerca per parola chiave:** Effettua ricerche specifiche utilizzando una parola chiave a tua scelta (ad esempio: Bitcoin, Viaggi, ...).
+- **Ricerca per categoria:** Trova gli articoli più recenti in base alla categoria selezionata (ad esempio: Sport, Tecnologia, ...).
+- **Preferiti:** Salva gli articoli che ti interessano di più o che desideri leggere in un secondo momento.
+- **Tema:** L'app offre sia il tema scuro che il tema chiaro. Il tema predefinito è il tema scuro, ma può essere cambiato manualmente.
 
-## Tech Stack
-
-**Client:** React js, Vite, Material UI
-
-
-
-## Variabili d'ambiente
-
-Per far funzionare questo progetto, devi aggiungere la tua api key nel tuo file .env 
+## Environment Variables (Variabili d'ambiente)
+To make this project work, you need to add your API key to the .env file:
+Per far funzionare questo progetto, è necessario aggiungere la tua chiave API nel file .env:
 
 `VITE_API_KEY='your api key'`
 
-
-
-## Authors
-
-- [@dmasiii](https://github.com/Danilo-Masi)
-
+## Tech Stack
+**Client:** React js, Vite, Material UI
 
 ## Feedback
-
-Qualsiasi feedback è gradito, puoi contattarmi al mio indirizzo email personale: danilomasi999@gmail.com
+We are open to any feedback. You can contact us via email at the following address: danilomasi999@gmail.com.
+Siamo aperti a qualsiasi feedback. Puoi contattarci via email all'indirizzo personale: danilomasi999@gmail.com.

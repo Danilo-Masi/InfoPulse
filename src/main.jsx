@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-//CSS
-import './index.css';
 //Componenti
 import App from './App.jsx';
 
