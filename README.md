@@ -32,7 +32,9 @@ Per far funzionare questo progetto, è necessario aggiungere la tua chiave API n
 `VITE_API_KEY='your api key'`
 
 ## Tech Stack
-**Client:** React js, Vite, Material UI
+
+| React.js | Vite.js | Material UI |
+|----------|---------| ----------- |
 
 ## Feedback
 We are open to any feedback. You can contact us via email at the following address: danilomasi999@gmail.com.
